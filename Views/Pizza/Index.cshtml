@@ -1,0 +1,53 @@
+﻿@model Pizza[]
+
+@{
+    Layout = "_myLayout";
+    ViewData["title"] = "My pizzas";
+    var pizzas = Model;
+}
+
+<div class="text-center">
+
+<a class="text-decoration-none btn btn-info mt-3" href="@Url.Action("Create" , "Pizza")">Aggiungi una pizza</a>
+</div>
+   
+@if(pizzas.Length is 0)
+{
+    <p class="text-center" >Nessuna pizza da mostrare!</p>
+}
+else
+{
+<div class="text-center container">
+    <table class="table">
+        <thead>
+            
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Descrizione</th>
+                <th scope="col">Foto</th>
+                <th scope="col">Prezzo(€)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var pizza in pizzas)
+            {
+                <tr>
+                    <td>@pizza.Id</td>
+                    <td class="fw-bold">
+                        <a class="text-decoration-none" href="@Url.Action("Detail", "Pizza", new {Id = pizza.Id})">@pizza.Name</a>
+                    </td>
+                    <td class="fw-bold">@pizza.Description</td>
+                    <td class="fw-bold"><img class="img-fluid w-25"  src="@pizza.Foto" /></td>
+                    <td class="fw-bold">@pizza.Price</td>
+
+                </tr>
+                 
+            }
+           
+        </tbody>
+    </table>
+</div>
+    
+}
+    

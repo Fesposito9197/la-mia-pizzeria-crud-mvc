@@ -1,0 +1,17 @@
+﻿@model Pizza
+@{
+    Layout = "_myLayout";
+    var pizza = Model;
+}
+<div class="d-flex justify-content-center">
+
+    <div class="card mt-3" style="width: 18rem;">
+        <img src="@pizza.Foto" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">@pizza.Name</h5>
+            <p class="card-text">@pizza.Description</p>
+            <p class="card-text">Prezzo: @pizza.Price €</p>
+            <a href="@Url.Action("Index", "Pizza")" class="btn btn-primary">Torna alla Home</a>
+        </div>
+    </div>
+</div>   
