@@ -28,16 +28,14 @@ namespace la_mia_pizzeria_static.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            using(var ctx = new PizzeriaContext())
-            {
-                List<Categoria> categories = ctx.Categories.ToList();
+            using var ctx = new PizzeriaContext();
+            List<Categoria> categories = ctx.Categories.ToList();
 
-                PizzaFormModel model = new PizzaFormModel();
+            PizzaFormModel model = new PizzaFormModel();
 
-                model.Pizza = new Pizza();
-                model.Categories = categories;
-                return View("Create", model );
-            }
+            model.Pizza = new Pizza();
+            model.Categories = categories;
+            return View("Create", model);
         }
 
         [HttpPost]
