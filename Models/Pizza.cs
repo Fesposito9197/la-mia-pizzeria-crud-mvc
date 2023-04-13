@@ -33,5 +33,9 @@ namespace la_mia_pizzeria_static.Models
         //[Range(1, 200, ErrorMessage = "Il prezzo non puo essere inferiore a 0")]
         [MoreThanZeroPrice]
         public int Price { get; set; }
+
+        
+        public int? CategoriaId { get; set; }
+        public Categoria? Categoria { get; set;}
     }
 }

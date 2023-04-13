@@ -11,6 +11,17 @@
             <h5 class="card-title">@pizza.Name</h5>
             <p class="card-text">@pizza.Description</p>
             <p class="card-text">Prezzo: @pizza.Price €</p>
+            <p class="card-text">
+                Categoria:
+                @if ( pizza.Categoria != null)
+                {
+                    @pizza.Categoria.Name
+                }else
+                {
+                    <span>Nessuna categoria</span>
+                }
+
+            </p>
             <a href="@Url.Action("Index", "Pizza")" class="btn btn-primary">Torna alla Home</a>
         </div>
     </div>
