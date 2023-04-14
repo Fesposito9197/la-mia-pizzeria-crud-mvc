@@ -2,7 +2,7 @@
 {
     public class PizzaFormModel
     {
-        public Pizza Pizza { get; set; }
+        public Pizza? Pizza { get; set; }
         public List<Categoria>? Categories { get; set; }
     }
 }
