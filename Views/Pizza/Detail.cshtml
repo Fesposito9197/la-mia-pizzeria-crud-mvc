@@ -22,6 +22,17 @@
                 }
 
             </p>
+            <p class="card-text">
+                Ingredienti:
+                @foreach (Ingredienti ingredienti in pizza.Ingredientii)
+                {
+                    <ul>
+                        <li>
+                            @ingredienti.Name
+                        </li>
+                    </ul>
+                }
+            </p>
             <a href="@Url.Action("Index", "Pizza")" class="btn btn-primary">Torna alla Home</a>
         </div>
     </div>

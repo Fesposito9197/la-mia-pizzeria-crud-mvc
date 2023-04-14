@@ -49,7 +49,17 @@
 
                 </select>
             </div>
+            <div class="mb-3">
+                <label asp-for="Pizza.Ingredientii"></label>
+                <select asp-for="SelectedIngredientii" 
+                        multiple 
+                        size="5" 
+                        class="form-control" 
+                        asp-items="@pizzaform.Ingredientii">
+                </select>
+            </div>
             <button type="submit" class="btn btn-success">Create</button>
         </form>
     </div>
 </div>
+
