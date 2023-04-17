@@ -5,13 +5,16 @@
     ViewData["title"] = "My pizzas";
     var pizzas = Model;
 }
+@if (User.IsInRole("Admin"))
+{
+    <div class="text-center">
 
-<div class="text-center">
-
-<a class="text-decoration-none btn btn-info mt-3" href="@Url.Action("Create" , "Pizza")">Aggiungi una pizza</a>
+    <a class="text-decoration-none btn btn-info mt-3" href="@Url.Action("Create" , "Pizza")">Aggiungi una pizza</a>
     
 
-</div>
+    </div>
+    
+}
    
 @if(pizzas.Length is 0)
 {
@@ -28,7 +31,11 @@ else
                 <th scope="col">Nome</th>
                 <th scope="col">Descrizione</th>
                 <th scope="col">Prezzo(€)</th>
-                <th scope="col">Action</th>
+                @if (User.IsInRole("Admin"))
+                {
+                    <th scope="col">Action</th>
+                        
+                }
             </tr>
                 
         </thead>
@@ -42,17 +49,21 @@ else
                     </td>
                     <td class="fw-bold">@pizza.Description</td>
                     <td class="fw-bold">@pizza.Price</td>
-                    <td class=" fw-bold">
-                        <a class="btn btn-warning mb-1" href="@Url.Action("Update", "Pizza", new {Id = pizza.Id})"><i class="fa-solid fa-pencil" style="color: #000000;"></i></a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <td class=" fw-bold">
+                            <a class="btn btn-warning mb-1" href="@Url.Action("Update", "Pizza", new {Id = pizza.Id})"><i class="fa-solid fa-pencil" style="color: #000000;"></i></a>
 
-                        <form method="post" asp-controller="Pizza" asp-action="Delete" asp-route-id="@pizza.Id">
-                            @Html.AntiForgeryToken()
-                            <button type="submit" class="btn btn-danger">
-                                <i class="fa-solid fa-dumpster-fire fa-shake" style="color: #000000;"></i>
-                            </button>
-                        </form>
+                            <form method="post" asp-controller="Pizza" asp-action="Delete" asp-route-id="@pizza.Id">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fa-solid fa-dumpster-fire fa-shake" style="color: #000000;"></i>
+                                </button>
+                            </form>
                      
-                    </td>
+                        </td>
+                            
+                    }
                      
                 </tr>
                  
