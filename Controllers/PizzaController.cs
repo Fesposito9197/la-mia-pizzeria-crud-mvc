@@ -1,4 +1,5 @@
 ﻿using la_mia_pizzeria_static.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace la_mia_pizzeria_static.Controllers
 {
+    [Authorize(Roles ="ADMIN,USER")]
     public class PizzaController : Controller
     {
         private readonly ILogger<PizzaController> _logger;
@@ -18,6 +20,8 @@ namespace la_mia_pizzeria_static.Controllers
            
         }
 
+
+        [Authorize(Roles = "ADMIN,USER")]
         public IActionResult Index()
         {
             using var ctx = new PizzeriaContext();
@@ -26,6 +30,8 @@ namespace la_mia_pizzeria_static.Controllers
             return View(pizzas);
         }
 
+
+        [Authorize(Roles = "ADMIN")]
         [HttpGet]
         public IActionResult Create()
         {
@@ -97,6 +103,8 @@ namespace la_mia_pizzeria_static.Controllers
             }
         }
 
+
+        [Authorize(Roles = "ADMIN,USER")]
         public IActionResult Detail(int id)
         {
             using var ctx = new PizzeriaContext();
@@ -116,6 +124,8 @@ namespace la_mia_pizzeria_static.Controllers
             return View( pizza);
         }
 
+
+        [Authorize(Roles = "ADMIN")]
         [HttpGet]
         public IActionResult Update(int id)
         {
@@ -212,6 +222,9 @@ namespace la_mia_pizzeria_static.Controllers
 
         }
 
+
+
+        [Authorize(Roles = "ADMIN")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Delete(int id)
